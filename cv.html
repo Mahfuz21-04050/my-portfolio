@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Md Mahfuzur Rahman - Professional CV</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* CV Container - Exactly A4 Size */
+    .cv-container {
+      width: 210mm;
+      /* A4 Width */
+      min-height: 297mm;
+      /* A4 Height */
+      margin: 0 auto;
+      background: white;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+      display: flex;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Left Sidebar */
+    .sidebar {
+      width: 40%;
+      /* Increased width for better spacing */
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      color: white;
+      padding: 25px 20px;
+      position: relative;
+    }
+
+    /* Profile Section */
+    .profile-img {
+      width: 150px;
+      /* Reduced size */
+      height: 150px;
+      border-radius: 50%;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      overflow: hidden;
+      margin: 0 auto 20px;
+      background: #fff;
+    }
+
+    .profile-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .name-title {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .name-title h1 {
+      font-size: 22px;
+      /* Reduced font size */
+      font-weight: 700;
+      margin-bottom: 5px;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+    }
+
+    .name-title p {
+      font-size: 16px;
+      color: #d1e8ff;
+      font-weight: 300;
+    }
+
+    /* Contact Info in Sidebar */
+    .contact-info {
+      margin-bottom: 25px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 15px;
+    }
+
+    .contact-icon {
+      width: 30px;
+      /* Smaller icons */
+      height: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+      flex-shrink: 0;
+      font-size: 14px;
+    }
+
+    .contact-text h4 {
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 3px;
+      color: #a0c8ff;
+    }
+
+    .contact-text p {
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.3;
+    }
+
+    /* Skills in Sidebar */
+    .sidebar-section {
+      margin-bottom: 25px;
+    }
+
+    .sidebar-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+    }
+
+    .sidebar-title::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      width: 40px;
+      height: 2px;
+      background: #4dabf7;
+    }
+
+    .skill-item {
+      margin-bottom: 12px;
+    }
+
+    .skill-name {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      font-size: 13px;
+    }
+
+    .skill-bar {
+      height: 5px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .skill-progress {
+      height: 100%;
+      background: #4dabf7;
+      border-radius: 2px;
+    }
+
+    /* Languages */
+    .language-item {
+      margin-bottom: 12px;
+    }
+
+    .language-name {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      font-size: 13px;
+    }
+
+    /* Tools Tags */
+    .tools-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .tool-tag {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 4px 8px;
+      border-radius: 3px;
+      font-size: 11px;
+      flex: 1 0 calc(50% - 6px);
+      text-align: center;
+    }
+
+    /* Right Content */
+    .main-content {
+      width: 60%;
+      padding: 25px 25px;
+    }
+
+    /* Section Styles */
+    .section {
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1e3c72;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eaeaea;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      width: 40px;
+      height: 2px;
+      background: #1e3c72;
+    }
+
+    /* Career Summary */
+    .summary-text {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.5;
+      text-align: justify;
+    }
+
+    /* Education */
+    .timeline-item {
+      margin-bottom: 18px;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #1e3c72;
+    }
+
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 20px;
+      width: 1px;
+      height: calc(100% + 2px);
+      background: #e0e0e0;
+    }
+
+    .timeline-item:last-child::after {
+      display: none;
+    }
+
+    .timeline-date {
+      font-size: 12px;
+      color: #2a5298;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    .timeline-content h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 3px;
+    }
+
+    .timeline-content h4 {
+      font-size: 13px;
+      font-weight: 500;
+      color: #2a5298;
+      margin-bottom: 5px;
+    }
+
+    .timeline-content p {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 5px;
+      line-height: 1.4;
+    }
+
+    .timeline-content .gpa {
+      display: inline-block;
+      background: #e3f2fd;
+      color: #1e3c72;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    /* Projects */
+    .project-item {
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px dashed #e0e0e0;
+    }
+
+    .project-item:last-child {
+      border-bottom: none;
+    }
+
+    .project-item h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .project-item p {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tech-tag {
+      background: #e3f2fd;
+      color: #1e3c72;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    /* Achievements */
+    .achievement-list {
+      list-style: none;
+      margin-left: 5px;
+    }
+
+    .achievement-list li {
+      margin-bottom: 8px;
+      padding-left: 20px;
+      position: relative;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .achievement-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #1e3c72;
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    /* Footer */
+    .footer-note {
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px solid #eee;
+      font-size: 11px;
+      color: #777;
+      text-align: center;
+    }
+
+    /* Print Styles - MOST IMPORTANT FOR ONE PAGE */
+    @media print {
+      body {
+        background: white !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 210mm !important;
+        height: 297mm !important;
+      }
+
+      .cv-container {
+        box-shadow: none !important;
+        margin: 0 !important;
+        width: 210mm !important;
+        min-height: 297mm !important;
+        max-height: 297mm !important;
+        overflow: hidden !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      .no-print {
+        display: none !important;
+      }
+
+      /* Ensure no overflow */
+      .sidebar,
+      .main-content {
+        overflow: hidden !important;
+        page-break-inside: avoid !important;
+      }
+
+      /* Adjust fonts for print */
+      .sidebar {
+        padding: 20px 15px !important;
+      }
+
+      .main-content {
+        padding: 20px 20px !important;
+      }
+
+      @page {
+        size: A4;
+        margin: 0;
+      }
+    }
+
+    /* Download Button */
+    .download-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #1e3c72;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 3px 10px rgba(30, 60, 114, 0.3);
+      transition: all 0.3s ease;
+      z-index: 1000;
+      border: none;
+      cursor: pointer;
+    }
+
+    .download-btn:hover {
+      background: #2a5298;
+      transform: translateY(-2px);
+    }
+
+    /* Preview Container */
+    .preview-container {
+      width: 210mm;
+      height: 297mm;
+      margin: 20px auto;
+      border: 1px solid #ddd;
+      background: white;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+      display: none;
+    }
+
+    /* Responsive for screen */
+    @media screen and (max-width: 900px) {
+      .cv-container {
+        width: 90%;
+        flex-direction: column;
+      }
+
+      .sidebar,
+      .main-content {
+        width: 100%;
+      }
+
+      .download-btn {
+        position: static;
+        margin: 20px auto;
+        display: inline-block;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Preview Container -->
+  <div class="preview-container" id="preview"></div>
+
+  <!-- CV Container -->
+  <div class="cv-container" id="cv">
+    <!-- Left Sidebar -->
+    <div class="sidebar">
+      <!-- Profile Image -->
+      <div class="profile-img">
+        <img src="PIC/mahfuz.jpeg" alt="Md Mahfuzur Rahman" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"
+          http://www.w3.org/2000/svg\" width=\"150\" height=\"150\" viewBox=\"0 0 150 150\">
+        <rect width=\"150\" height=\"150\" fill=\"%23f0f0f0\" /><text x=\"50%\" y=\"50%\" font-family=\"Arial\"
+          font-size=\"50\" text-anchor=\"middle\" dy=\".3em\" fill=\"%23999\">M</text></svg>'">
+      </div>
+
+      <!-- Name and Title -->
+      <div class="name-title">
+        <h1>MD MAHFUZUR RAHMAN</h1>
+        <p>Full Stack Developer</p>
+      </div>
+
+      <!-- Contact Information -->
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div class="contact-text">
+            <h4>PHONE</h4>
+            <p>+880 1576-525872</p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="contact-text">
+            <h4>EMAIL</h4>
+            <p>maahfuz2021@gmail.com</p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="contact-text">
+            <h4>LOCATION</h4>
+            <p>Chittagong, Bangladesh</p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fab fa-github"></i>
+          </div>
+          <div class="contact-text">
+            <h4>GITHUB</h4>
+            <p>Mahfuz21-04050</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills Section -->
+      <div class="sidebar-section">
+        <h3 class="sidebar-title">TECHNICAL SKILLS</h3>
+
+        <div class="skill-item">
+          <div class="skill-name">
+            <span>Frontend Development</span>
+            <span>95%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 95%"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-name">
+            <span>React.js</span>
+            <span>85%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 85%"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-name">
+            <span>Node.js</span>
+            <span>85%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 85%"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-name">
+            <span>Flutter</span>
+            <span>80%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 80%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Languages -->
+      <div class="sidebar-section">
+        <h3 class="sidebar-title">LANGUAGES</h3>
+
+        <div class="language-item">
+          <div class="language-name">
+            <span>Bengali</span>
+            <span>Native</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 100%"></div>
+          </div>
+        </div>
+
+        <div class="language-item">
+          <div class="language-name">
+            <span>English</span>
+            <span>Fluent</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 90%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tools -->
+      <div class="sidebar-section">
+        <h3 class="sidebar-title">TOOLS & TECHNOLOGIES</h3>
+        <div class="tools-container">
+          <div class="tool-tag">Git/GitHub</div>
+          <div class="tool-tag">MongoDB</div>
+          <div class="tool-tag">Firebase</div>
+          <div class="tool-tag">Express.js</div>
+          <div class="tool-tag">REST API</div>
+          <div class="tool-tag">Tailwind CSS</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Main Content -->
+    <div class="main-content">
+      <!-- Career Summary -->
+      <div class="section">
+        <h2 class="section-title">CAREER SUMMARY</h2>
+        <p class="summary-text">
+          Passionate CSE student at CUET with expertise in full-stack web development (MERN Stack) and mobile app
+          development (Flutter). Developed 20+ projects with strong foundation in cybersecurity. Excellent academic
+          background with Golden A+ in SSC & HSC. Seeking opportunities to build innovative solutions.
+        </p>
+      </div>
+
+      <!-- Education -->
+      <div class="section">
+        <h2 class="section-title">EDUCATION</h2>
+
+        <div class="timeline-item">
+          <div class="timeline-date">2021 - Present</div>
+          <div class="timeline-content">
+            <h3>B.Sc. in Computer Science & Engineering</h3>
+            <h4>Chittagong University of Engineering & Technology (CUET)</h4>
+            <p>Courses: Data Structures, Algorithms, Database Systems, Web Development, Software Engineering</p>
+            <span class="gpa">CGPA: 3.15/4.00</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">2019 - 2021</div>
+          <div class="timeline-content">
+            <h3>Higher Secondary Certificate (HSC)</h3>
+            <h4>BUET College</h4>
+            <p>Science Group (Physics, Chemistry, Mathematics, ICT)</p>
+            <span class="gpa">GPA: 5.00 (Golden A+)</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">2017 - 2019</div>
+          <div class="timeline-content">
+            <h3>Secondary School Certificate (SSC)</h3>
+            <h4>Malikhali Secondary School</h4>
+            <p>Science Group with outstanding performance</p>
+            <span class="gpa">GPA: 5.00 (Golden A+)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projects -->
+      <div class="section">
+        <h2 class="section-title">NOTABLE PROJECTS</h2>
+
+        <div class="project-item">
+          <h3>Online Exam System</h3>
+          <p>Full-stack online examination platform with real-time monitoring and automatic grading system.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">React.js</span>
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">MongoDB</span>
+            <span class="tech-tag">Express.js</span>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <h3>Event Management System</h3>
+          <p>Complete event booking platform with user authentication and payment integration.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">MERN Stack</span>
+            <span class="tech-tag">REST API</span>
+            <span class="tech-tag">JWT Auth</span>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <h3>Smart Bike Management App</h3>
+          <p>Mobile app for bike rental management with GPS tracking and booking system.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">Flutter</span>
+            <span class="tech-tag">Firebase</span>
+            <span class="tech-tag">Google Maps</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Achievements -->
+      <div class="section">
+        <h2 class="section-title">ACHIEVEMENTS</h2>
+        <ul class="achievement-list">
+          <li>Ranked 617th in CUET-KUET-RUET Admission Test (2021)</li>
+          <li>Golden A+ in both SSC & HSC Examinations</li>
+          <li>Completed 20+ Technical Projects</li>
+          <li>Cybersecurity & Ethical Hacking Enthusiast</li>
+        </ul>
+      </div>
+
+      <!-- Footer Note -->
+      <div class="footer-note">
+        <p>References available upon request | Last Updated: January 2024</p>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
+</html>
