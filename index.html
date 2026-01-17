@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mahfuz | Full Stack Developer & Mobile App Developer</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            'poppins': ['Poppins', 'sans-serif'],
+            'inter': ['Inter', 'sans-serif'],
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'gradient': 'gradient 8s ease infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'bounce-slow': 'bounce 3s infinite',
+            'shimmer': 'shimmer 2s infinite',
+            'spin-slow': 'spin 8s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-20px)' },
+            },
+            gradient: {
+              '0%, 100%': { backgroundPosition: '0% 50%' },
+              '50%': { backgroundPosition: '100% 50%' },
+            },
+            shimmer: {
+              '0%': { transform: 'translateX(-100%)' },
+              '100%': { transform: 'translateX(100%)' },
+            }
+          },
+          colors: {
+            primary: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+            },
+            secondary: {
+              50: '#fdf4ff',
+              100: '#fae8ff',
+              500: '#d946ef',
+              600: '#c026d3',
+              700: '#a21caf',
+            },
+            accent: {
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              500: '#14b8a6',
+              600: '#0d9488',
+              700: '#0f766e',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --primary: #0ea5e9;
+      --secondary: #d946ef;
+      --accent: #14b8a6;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #f8fafc;
+    }
+
+    .light body {
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      color: #1e293b;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .light .glass-card {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 300% 300%;
+      animation: gradient 8s ease infinite;
+    }
+
+    .skill-bar {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-bar::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(14, 165, 233, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .light .particle {
+      background: radial-gradient(circle, rgba(14, 165, 233, 0.05) 0%, transparent 70%);
+    }
+
+    .tech-tag {
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(217, 70, 239, 0.1));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .light .tech-tag {
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.05), rgba(217, 70, 239, 0.05));
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .floating-element {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      transform: translateX(120%);
+      transition: transform 0.3s ease;
+    }
+
+    .notification.show {
+      transform: translateX(0);
+    }
+
+    .typewriter {
+      overflow: hidden;
+      border-right: 3px solid var(--primary);
+      white-space: nowrap;
+      animation: typing 3s steps(30, end), blink-caret 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from {
+        width: 0
+      }
+
+      to {
+        width: 100%
+      }
+    }
+
+    @keyframes blink-caret {
+
+      from,
+      to {
+        border-color: transparent
+      }
+
+      50% {
+        border-color: var(--primary)
+      }
+    }
+
+    /* Journey Timeline Styles */
+    .timeline-container {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .timeline-line {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--primary), var(--secondary));
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 60px;
+      width: 45%;
+    }
+
+    .timeline-item:nth-child(odd) {
+      left: 0;
+    }
+
+    .timeline-item:nth-child(even) {
+      left: 55%;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      top: 20px;
+      right: -12px;
+      z-index: 2;
+    }
+
+    .timeline-item:nth-child(even) .timeline-dot {
+      left: -12px;
+      right: auto;
+    }
+
+    .timeline-year {
+      font-size: 0.9rem;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    /* Modern scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #1e293b;
+    }
+
+    .light ::-webkit-scrollbar-track {
+      background: #e2e8f0;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+    }
+  </style>
+</head>
+
+<body class="font-inter dark">
+  <!-- EmailJS Initialization -->
+  <script>
+      // Initialize EmailJS with your credentials
+      (function () {
+        emailjs.init("hNYGgW8jVQeGZq_T5"); // Your EmailJS Public Key
+      })();
+  </script>
+
+  <!-- Notification System -->
+  <div id="notification" class="notification glass-card p-4 max-w-sm">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
+        <i class="fas fa-check text-white"></i>
+      </div>
+      <div>
+        <p class="font-semibold" id="notification-title">Success!</p>
+        <p class="text-sm text-gray-300 dark:text-gray-700" id="notification-message"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="fixed w-full z-50 glass-card mx-4 mt-4">
+    <div class="max-w-7xl mx-auto px-6 py-3">
+      <div class="flex justify-between items-center">
+        <!-- Logo -->
+        <a href="#" class="flex items-center space-x-3 group">
+          <div
+            class="w-10 h-10 rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center">
+            <span class="text-white font-bold">M</span>
+          </div>
+          <div>
+            <span
+              class="text-xl font-bold bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent">Mahfuz</span>
+            <p class="text-xs text-gray-400 dark:text-gray-600">Developer & Innovator</p>
+          </div>
+        </a>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#home" class="hover:text-primary-400 transition">Home</a>
+          <a href="#about" class="hover:text-primary-400 transition">About</a>
+          <a href="#skills" class="hover:text-primary-400 transition">Skills</a>
+          <a href="#projects" class="hover:text-primary-400 transition">Projects</a>
+          <a href="#journey" class="hover:text-primary-400 transition">Journey</a>
+          <a href="#contact" class="hover:text-primary-400 transition">Contact</a>
+
+          <!-- Theme Toggle -->
+          <button onclick="toggleTheme()" class="relative w-12 h-6 rounded-full bg-gray-700 dark:bg-gray-300">
+            <div
+              class="absolute top-1 left-1 w-4 h-4 rounded-full bg-white dark:bg-gray-800 transition-transform duration-300"
+              id="themeToggle"></div>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button class="md:hidden text-xl" onclick="toggleMobileMenu()">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="hidden md:hidden mt-4 space-y-2">
+        <a href="#home" class="block py-2 hover:text-primary-400" onclick="toggleMobileMenu()">Home</a>
+        <a href="#about" class="block py-2 hover:text-primary-400" onclick="toggleMobileMenu()">About</a>
+        <a href="#skills" class="block py-2 hover:text-primary-400" onclick="toggleMobileMenu()">Skills</a>
+        <a href="#projects" class="block py-2 hover:text-primary-400" onclick="toggleMobileMenu()">Projects</a>
+        <a href="#journey" class="block py-2 hover:text-primary-400" onclick="toggleMobileMenu()">Journey</a>
+        <a href="#contact" class="block py-2 hover:text-primary-400" onclick="toggleMobileMenu()">Contact</a>
+        <button onclick="toggleTheme()" class="block py-2 text-left w-full hover:text-primary-400">
+          <i class="fas fa-moon mr-2"></i> Toggle Theme
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="min-h-screen relative overflow-hidden pt-20">
+    <!-- Background Particles -->
+    <div id="particles"></div>
+
+    <!-- Animated Background -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div
+        class="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-primary-500/10 via-transparent to-secondary-500/10 transform rotate-12">
+      </div>
+      <div class="absolute top-1/2 -right-1/4 w-96 h-96 bg-accent-500/5 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 py-20 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Left Content -->
+        <div class="text-center lg:text-left">
+          <p class="text-primary-400 mb-4 font-semibold tracking-wider">
+            <span class="inline-block animate-bounce">👋</span> HELLO THERE!
+          </p>
+          <h1 class="text-5xl lg:text-7xl font-bold mb-6 leading-tight">
+            I'm <span class="gradient-text">Mahfuz</span><br>
+            <span class="text-3xl lg:text-5xl text-gray-800 dark:text-gray-300">Full Stack Developer</span>
+          </h1>
+
+          <div class="typewriter mb-6">
+            <p class="text-xl text-gray-600 dark:text-gray-400">
+              Crafting Digital Experiences with Code & Creativity
+            </p>
+          </div>
+
+          <p class="text-gray-600 dark:text-gray-400 text-lg mb-8 max-w-2xl">
+            CSE 3rd Year @ CUET | 20+ Projects | MERN Stack | Flutter | Cybersecurity Enthusiast
+          </p>
+
+          <!-- Real-time Stats -->
+          <div class="flex flex-wrap gap-6 mb-8">
+            <div class="text-center">
+              <div class="text-3xl font-bold text-primary-400" id="projectCount">20+</div>
+              <div class="text-gray-600 dark:text-gray-400 text-sm">Projects</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-secondary-500" id="ageDisplay">...</div>
+              <div class="text-gray-600 dark:text-gray-400 text-sm">Years Old</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-accent-500" id="locationBadge">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="text-gray-600 dark:text-gray-400 text-sm" id="currentLocation">Loading...</div>
+            </div>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+            <a href="#projects"
+              class="px-6 py-3 bg-gradient-to-r from-primary-500 to-secondary-500 text-white rounded-lg font-semibold hover:opacity-90 transition-all hover:scale-105">
+              <i class="fas fa-rocket mr-2"></i> Explore Projects
+            </a>
+            <a href="#journey"
+              class="px-6 py-3 border border-primary-500 text-primary-500 rounded-lg hover:bg-primary-500/10 transition-all">
+              <i class="fas fa-road mr-2"></i> My Journey
+            </a>
+            <a href="PIC/cv.pdf" download
+              class="px-6 py-3 bg-gray-800 dark:bg-gray-700 rounded-lg hover:bg-gray-900 dark:hover:bg-gray-800 transition-all">
+              <i class="fas fa-download mr-2"></i> Download CV
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Image with Floating Effect -->
+        <div class="relative flex justify-center">
+          <div class="relative w-72 h-72">
+            <!-- Floating rings -->
+            <div class="absolute inset-0">
+              <div class="absolute inset-0 border-4 border-primary-500/30 rounded-full animate-spin-slow"></div>
+              <div class="absolute inset-8 border-4 border-secondary-500/20 rounded-full animate-spin-slow"
+                style="animation-direction: reverse; animation-duration: 8s;"></div>
+            </div>
+
+            <!-- Profile Image -->
+            <div
+              class="relative w-full h-full rounded-full overflow-hidden border-4 border-white/20 dark:border-white/20 shadow-2xl floating-element">
+              <img src="PIC/mahfuz.jpeg" alt="Mahfuz" class="w-full h-full object-cover">
+            </div>
+
+            <!-- Floating Tech Badges -->
+            <div
+              class="absolute -top-4 -right-4 w-16 h-16 glass-card rounded-full flex items-center justify-center animate-bounce-slow">
+              <i class="fab fa-react text-primary-400 text-2xl"></i>
+            </div>
+            <div
+              class="absolute -bottom-4 -left-4 w-16 h-16 glass-card rounded-full flex items-center justify-center animate-bounce-slow"
+              style="animation-delay: 0.5s;">
+              <i class="fab fa-flutter text-accent-400 text-2xl"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <a href="#about" class="text-gray-600 dark:text-gray-400 hover:text-primary-400">
+        <i class="fas fa-chevron-down text-2xl"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- Skills Section with Firebase -->
+  <section id="skills" class="py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <h2 class="text-4xl font-bold mb-4">
+          <span class="gradient-text">Technical Skills</span>
+        </h2>
+        <p class="text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+          Technologies and tools I use to build amazing applications
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Web Development -->
+        <div class="glass-card p-8" data-aos="fade-up">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 rounded-lg bg-primary-500/20 flex items-center justify-center mr-4">
+              <i class="fab fa-html5 text-primary-400 text-xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold">Frontend Development</h3>
+          </div>
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">HTML/CSS</span>
+                <span class="text-primary-400">95%</span>
+              </div>
+              <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full skill-bar"
+                  style="width: 95%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">JavaScript</span>
+                <span class="text-primary-400">90%</span>
+              </div>
+              <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full skill-bar"
+                  style="width: 90%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">React.js</span>
+                <span class="text-primary-400">85%</span>
+              </div>
+              <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full skill-bar"
+                  style="width: 85%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">Tailwind CSS</span>
+                <span class="text-primary-400">95%</span>
+              </div>
+              <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full skill-bar"
+                  style="width: 95%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Backend & Database -->
+        <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="100">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 rounded-lg bg-secondary-500/20 flex items-center justify-center mr-4">
+              <i class="fas fa-server text-secondary-400 text-xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold">Backend & Database</h3>
+          </div>
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">Node.js</span>
+                <span class="text-secondary-400">85%</span>
+              </div>
+              <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-secondary-500 to-primary-500 rounded-full skill-bar"
+                  style="width: 85%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">Express.js</span>
+                <span class="text-secondary-400">80%</span>
+              </div>
+              <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-secondary-500 to-primary-500 rounded-full skill-bar"
+                  style="width: 80%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">MongoDB</span>
+                <span class="text-secondary-400">75%</span>
+              </div>
+              <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-secondary-500 to-primary-500 rounded-full skill-bar"
+                  style="width: 75%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">Firebase</span>
+                <span class="text-secondary-400">70%</span>
+              </div>
+              <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-secondary-500 to-primary-500 rounded-full skill-bar"
+                  style="width: 70%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile & Tools -->
+        <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="200">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 rounded-lg bg-accent-500/20 flex items-center justify-center mr-4">
+              <i class="fab fa-flutter text-accent-400 text-xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold">Mobile & DevOps</h3>
+          </div>
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">Flutter</span>
+                <span class="text-accent-400">80%</span>
+              </div>
+              <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-accent-500 to-primary-500 rounded-full skill-bar"
+                  style="width: 80%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">Dart</span>
+                <span class="text-accent-400">75%</span>
+              </div>
+              <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-accent-500 to-primary-500 rounded-full skill-bar"
+                  style="width: 75%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">Git/GitHub</span>
+                <span class="text-accent-400">90%</span>
+              </div>
+              <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-accent-500 to-primary-500 rounded-full skill-bar"
+                  style="width: 90%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">REST APIs</span>
+                <span class="text-accent-400">85%</span>
+              </div>
+              <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-accent-500 to-primary-500 rounded-full skill-bar"
+                  style="width: 85%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Technologies -->
+      <div class="mt-12 glass-card p-8" data-aos="fade-up">
+        <h3 class="text-2xl font-bold mb-6 text-center">Other Technologies & Tools</h3>
+        <div class="flex flex-wrap gap-3 justify-center">
+          <span class="px-4 py-2 tech-tag rounded-full flex items-center">
+            <i class="fab fa-bootstrap text-purple-500 mr-2"></i> Bootstrap
+          </span>
+          <span class="px-4 py-2 tech-tag rounded-full flex items-center">
+            <i class="fab fa-python text-yellow-500 mr-2"></i> Python
+          </span>
+          <span class="px-4 py-2 tech-tag rounded-full flex items-center">
+            <i class="fas fa-database text-green-500 mr-2"></i> MySQL
+          </span>
+          <span class="px-4 py-2 tech-tag rounded-full flex items-center">
+            <i class="fab fa-aws text-orange-500 mr-2"></i> AWS Basics
+          </span>
+          <span class="px-4 py-2 tech-tag rounded-full flex items-center">
+            <i class="fab fa-docker text-blue-500 mr-2"></i> Docker
+          </span>
+          <span class="px-4 py-2 tech-tag rounded-full flex items-center">
+            <i class="fas fa-code-branch text-red-500 mr-2"></i> Git
+          </span>
+          <span class="px-4 py-2 tech-tag rounded-full flex items-center">
+            <i class="fab fa-npm text-red-400 mr-2"></i> NPM/Yarn
+          </span>
+          <span class="px-4 py-2 tech-tag rounded-full flex items-center">
+            <i class="fas fa-terminal text-gray-400 mr-2"></i> Linux/CLI
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects"
+    class="py-20 bg-gradient-to-b from-gray-900/50 to-transparent dark:from-gray-900/50 dark:to-transparent">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <h2 class="text-4xl font-bold mb-4">
+          <span class="gradient-text">My Projects</span>
+        </h2>
+        <p class="text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+          A collection of my work across web development, mobile apps, and full-stack applications
+        </p>
+      </div>
+
+      <!-- Project Filter -->
+      <div class="flex flex-wrap justify-center gap-4 mb-12" data-aos="fade-up">
+        <button onclick="filterProjects('all')"
+          class="px-6 py-2 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 text-white font-semibold transition-all hover:scale-105">
+          All Projects
+        </button>
+        <button onclick="filterProjects('mern')"
+          class="px-6 py-2 glass-card hover:bg-gray-800/50 dark:hover:bg-gray-800/50 transition-all">
+          MERN Stack
+        </button>
+        <button onclick="filterProjects('flutter')"
+          class="px-6 py-2 glass-card hover:bg-gray-800/50 dark:hover:bg-gray-800/50 transition-all">
+          Flutter
+        </button>
+        <button onclick="filterProjects('frontend')"
+          class="px-6 py-2 glass-card hover:bg-gray-800/50 dark:hover:bg-gray-800/50 transition-all">
+          Frontend
+        </button>
+        <button onclick="filterProjects('firebase')"
+          class="px-6 py-2 glass-card hover:bg-gray-800/50 dark:hover:bg-gray-800/50 transition-all">
+          Firebase
+        </button>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectsContainer">
+        <!-- Projects loaded dynamically -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Journey Section -->
+  <section id="journey" class="py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <h2 class="text-4xl font-bold mb-4">
+          <span class="gradient-text">My Journey</span>
+        </h2>
+        <p class="text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+          From primary school to university - a timeline of my educational and professional journey
+        </p>
+      </div>
+
+      <!-- Modern Timeline -->
+      <div class="relative timeline-container">
+        <!-- Timeline Line -->
+        <div class="timeline-line"></div>
+
+        <!-- Timeline Items -->
+        <div class="space-y-16">
+          <!-- 2013 - Primary Education -->
+          <div class="timeline-item" data-aos="fade-right">
+            <div class="glass-card p-8 relative">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">2013</div>
+              <h3 class="text-xl font-bold mb-2 text-primary-400">Primary Education</h3>
+              <p class="text-gray-600 dark:text-gray-400 mb-4">Borni Govt. Primary School</p>
+              <p class="text-gray-700 dark:text-gray-300">Successfully completed PSC with a GPA of 4.42, laying the
+                foundation of my academic career with excellence in basic education.</p>
+            </div>
+          </div>
+
+          <!-- 2016 - Junior School -->
+          <div class="timeline-item" data-aos="fade-left">
+            <div class="glass-card p-8 relative">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">2016</div>
+              <h3 class="text-xl font-bold mb-2 text-secondary-400">Junior School</h3>
+              <p class="text-gray-600 dark:text-gray-400 mb-4">Bashbaria Janjania Secondary School</p>
+              <p class="text-gray-700 dark:text-gray-300">Achieved GPA 4.17 in JSC, strengthening my interest in
+                learning, discipline, and developing a solid academic foundation.</p>
+            </div>
+          </div>
+
+          <!-- 2019 - Secondary School -->
+          <div class="timeline-item" data-aos="fade-right">
+            <div class="glass-card p-8 relative">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">2019</div>
+              <h3 class="text-xl font-bold mb-2 text-primary-400">Secondary School</h3>
+              <p class="text-gray-600 dark:text-gray-400 mb-4">Malikhali Secondary School</p>
+              <p class="text-gray-700 dark:text-gray-300">Secured a Golden A+ in SSC, showcasing dedication and strong
+                academic performance in science and mathematics.</p>
+            </div>
+          </div>
+
+          <!-- 2021 - Higher Secondary -->
+          <div class="timeline-item" data-aos="fade-left">
+            <div class="glass-card p-8 relative">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">2021</div>
+              <h3 class="text-xl font-bold mb-2 text-secondary-400">Higher Secondary</h3>
+              <p class="text-gray-600 dark:text-gray-400 mb-4">BUET College</p>
+              <p class="text-gray-700 dark:text-gray-300">Once again achieved Golden A+ in HSC, driven by passion for
+                science and technology, preparing for engineering studies.</p>
+            </div>
+          </div>
+
+          <!-- 2021 - University Admission -->
+          <div class="timeline-item" data-aos="fade-right">
+            <div class="glass-card p-8 relative">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">2021</div>
+              <h3 class="text-xl font-bold mb-2 text-accent-400">University Admission</h3>
+              <p class="text-gray-600 dark:text-gray-400 mb-4">CUET CSE Department</p>
+              <p class="text-gray-700 dark:text-gray-300">Ranked 617th in the CUET-KUET-RUET combined admission test and
+                enrolled in Computer Science & Engineering at CUET.</p>
+            </div>
+          </div>
+
+          <!-- 2022-Present - University Journey -->
+          <div class="timeline-item" data-aos="fade-left">
+            <div class="glass-card p-8 relative">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">2022 - Present</div>
+              <h3 class="text-xl font-bold mb-2 text-primary-400">University Journey</h3>
+              <p class="text-gray-600 dark:text-gray-400 mb-4">CUET CSE Student</p>
+              <p class="text-gray-700 dark:text-gray-300 mb-4">Currently pursuing B.Sc. in CSE at CUET with a strong
+                focus on:</p>
+              <div class="space-y-2">
+                <div class="flex items-center text-gray-700 dark:text-gray-300">
+                  <i class="fas fa-code text-primary-400 mr-2"></i>
+                  <span>Web Development & Full-Stack Projects</span>
+                </div>
+                <div class="flex items-center text-gray-700 dark:text-gray-300">
+                  <i class="fas fa-shield-alt text-secondary-400 mr-2"></i>
+                  <span>Cybersecurity & Ethical Hacking</span>
+                </div>
+                <div class="flex items-center text-gray-700 dark:text-gray-300">
+                  <i class="fab fa-flutter text-accent-400 mr-2"></i>
+                  <span>Mobile App Development with Flutter</span>
+                </div>
+                <div class="flex items-center text-gray-700 dark:text-gray-300">
+                  <i class="fas fa-project-diagram text-primary-400 mr-2"></i>
+                  <span>20+ Technical Projects & Learning</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section with EmailJS -->
+  <section id="contact"
+    class="py-20 bg-gradient-to-b from-gray-900/50 to-transparent dark:from-gray-900/50 dark:to-transparent">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <h2 class="text-4xl font-bold mb-4">
+          <span class="gradient-text">Get In Touch</span>
+        </h2>
+        <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          Have a project in mind? Let's work together to bring your ideas to life!
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-12">
+        <!-- Contact Info -->
+        <div>
+          <div class="glass-card p-8 mb-8" data-aos="fade-right">
+            <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+
+            <div class="space-y-6">
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 rounded-full bg-primary-500/20 flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-envelope text-primary-400"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold mb-1">Email</h4>
+                  <a href="mailto:maahfuz2021@gmail.com"
+                    class="text-gray-700 dark:text-gray-300 hover:text-primary-400 transition">
+                    maahfuz2021@gmail.com
+                  </a>
+                  <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Primary contact method</p>
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 rounded-full bg-secondary-500/20 flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-phone text-secondary-400"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold mb-1">Phone</h4>
+                  <div class="space-y-1">
+                    <a href="tel:+8801576525872"
+                      class="block text-gray-700 dark:text-gray-300 hover:text-secondary-400 transition">
+                      +880 1576-525872
+                    </a>
+                    <a href="tel:+8801908382082"
+                      class="block text-gray-700 dark:text-gray-300 hover:text-secondary-400 transition">
+                      +880 1908-382082
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 rounded-full bg-accent-500/20 flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-map-marker-alt text-accent-400"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold mb-1">Location</h4>
+                  <p class="text-gray-700 dark:text-gray-300" id="contactLocation">Chittagong, Bangladesh</p>
+                  <p class="text-sm text-gray-600 dark:text-gray-400 mt-1" id="locationDetails"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social Links -->
+          <div class="glass-card p-8" data-aos="fade-right" data-aos-delay="100">
+            <h3 class="text-2xl font-bold mb-6">Connect With Me</h3>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+              <a href="https://github.com/Mahfuz21-04050" target="_blank"
+                class="flex flex-col items-center p-4 bg-gray-800/50 dark:bg-gray-800/50 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-800 transition">
+                <i class="fab fa-github text-2xl mb-2"></i>
+                <span>GitHub</span>
+              </a>
+              <a href="https://www.linkedin.com/in/md-mahfuzur-rahman-cse/" target="_blank"
+                class="flex flex-col items-center p-4 bg-blue-900/20 rounded-lg hover:bg-blue-900/30 transition">
+                <i class="fab fa-linkedin text-2xl mb-2"></i>
+                <span>LinkedIn</span>
+              </a>
+              <a href="https://www.facebook.com/md.mahfuzur.rahman.75387" target="_blank"
+                class="flex flex-col items-center p-4 bg-blue-800/20 rounded-lg hover:bg-blue-800/30 transition">
+                <i class="fab fa-facebook text-2xl mb-2"></i>
+                <span>Facebook</span>
+              </a>
+              <a href="https://wa.me/8801576525872" target="_blank"
+                class="flex flex-col items-center p-4 bg-green-900/20 rounded-lg hover:bg-green-900/30 transition">
+                <i class="fab fa-whatsapp text-2xl mb-2"></i>
+                <span>WhatsApp</span>
+              </a>
+              <a href="https://www.instagram.com/maahfuz2021/" target="_blank"
+                class="flex flex-col items-center p-4 bg-pink-900/20 rounded-lg hover:bg-pink-900/30 transition">
+                <i class="fab fa-instagram text-2xl mb-2"></i>
+                <span>Instagram</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form with EmailJS -->
+        <div class="glass-card p-8" data-aos="fade-left">
+          <h3 class="text-2xl font-bold mb-6">Send Message</h3>
+          <form id="contactForm" class="space-y-6">
+            <div>
+              <label class="block mb-2 text-gray-700 dark:text-gray-300">Your Name *</label>
+              <input type="text" name="user_name" required
+                class="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800/50 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition">
+            </div>
+
+            <div>
+              <label class="block mb-2 text-gray-700 dark:text-gray-300">Your Email *</label>
+              <input type="email" name="user_email" required
+                class="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800/50 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition">
+            </div>
+
+            <div>
+              <label class="block mb-2 text-gray-700 dark:text-gray-300">Subject *</label>
+              <input type="text" name="subject" required
+                class="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800/50 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition">
+            </div>
+
+            <div>
+              <label class="block mb-2 text-gray-700 dark:text-gray-300">Message *</label>
+              <textarea name="message" rows="5" required
+                class="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800/50 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition"></textarea>
+            </div>
+
+            <button type="submit"
+              class="w-full py-4 bg-gradient-to-r from-primary-500 to-secondary-500 text-white rounded-lg font-semibold hover:opacity-90 transition-all hover:scale-105">
+              <i class="fas fa-paper-plane mr-2"></i> Send Message
+            </button>
+          </form>
+
+          <p class="text-sm text-gray-600 dark:text-gray-400 mt-4">
+            * Messages will be automatically sent to maahfuz2021@gmail.com via EmailJS
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 border-t border-gray-300 dark:border-gray-800/50">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-6 md:mb-0">
+          <div class="flex items-center space-x-3">
+            <div
+              class="w-10 h-10 rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center">
+              <span class="text-white font-bold">M</span>
+            </div>
+            <div>
+              <span class="text-xl font-bold">Mahfuz</span>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Full Stack & Mobile Developer</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center md:text-right">
+          <p class="text-gray-600 dark:text-gray-400">&copy; 2024 Md Mahfuzur Rahman. All rights reserved.</p>
+          <p class="text-sm text-gray-500 dark:text-gray-500 mt-1">Built with ❤️ using modern technologies</p>
+        </div>
+      </div>
+
+      <div class="text-center mt-8 pt-8 border-t border-gray-300/30 dark:border-gray-800/30">
+        <p class="text-gray-500 dark:text-gray-500">"The beautiful thing about learning is that no one can take it away
+          from you." - B.B. King</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop"
+    class="fixed bottom-8 right-8 w-12 h-12 glass-card rounded-full flex items-center justify-center hover:scale-110 transition-all opacity-0 invisible">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+
+    // Initialize EmailJS
+    emailjs.init("hNYGgW8jVQeGZq_T5");
+
+    // Mobile Menu Toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+      document.body.style.overflow = menu.classList.contains('hidden') ? 'auto' : 'hidden';
+    }
+
+    // Theme Toggle with proper dark/light mode
+    function toggleTheme() {
+      const html = document.documentElement;
+      const toggle = document.getElementById('themeToggle');
+
+      if (html.classList.contains('dark')) {
+        html.classList.remove('dark');
+        html.classList.add('light');
+        toggle.style.transform = 'translateX(0)';
+        localStorage.setItem('theme', 'light');
+      } else {
+        html.classList.remove('light');
+        html.classList.add('dark');
+        toggle.style.transform = 'translateX(24px)';
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    // Load saved theme
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      const html = document.documentElement;
+      const toggle = document.getElementById('themeToggle');
+
+      if (savedTheme === 'light') {
+        html.classList.remove('dark');
+        html.classList.add('light');
+        toggle.style.transform = 'translateX(0)';
+      } else {
+        html.classList.remove('light');
+        html.classList.add('dark');
+        toggle.style.transform = 'translateX(24px)';
+      }
+    });
+
+    // Calculate Age
+    function calculateAge() {
+      const birthDate = new Date('2001-07-15');
+      const today = new Date();
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const month = today.getMonth() - birthDate.getMonth();
+      if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      document.getElementById('ageDisplay').textContent = age;
+      return age;
+    }
+
+    // Get Location
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showDefaultLocation);
+      } else {
+        showDefaultLocation();
+      }
+    }
+
+    function showPosition(position) {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+
+      fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`)
+        .then(response => response.json())
+        .then(data => {
+          const city = data.address.city || data.address.town || data.address.village || '';
+          const country = data.address.country || 'Bangladesh';
+          const location = city ? `${city}, ${country}` : 'Chittagong, Bangladesh';
+
+          document.getElementById('currentLocation').textContent = location;
+          document.getElementById('contactLocation').textContent = location;
+          document.getElementById('locationDetails').textContent = `Lat: ${lat.toFixed(4)}, Lon: ${lon.toFixed(4)}`;
+
+          localStorage.setItem('userLocation', location);
+          localStorage.setItem('userCoords', JSON.stringify({ lat, lon }));
+        })
+        .catch(() => showDefaultLocation());
+    }
+
+    function showDefaultLocation() {
+      const savedLocation = localStorage.getItem('userLocation') || 'Chittagong, Bangladesh';
+      document.getElementById('currentLocation').textContent = savedLocation;
+      document.getElementById('contactLocation').textContent = savedLocation;
+      document.getElementById('locationDetails').textContent = 'Location approximate';
+    }
+
+    // Update time every second
+    function updateTime() {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString('en-BD', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+      });
+      document.getElementById('currentTime').textContent = timeString;
+
+      setTimeout(updateTime, 1000);
+    }
+
+    // Create Particles
+    function createParticles() {
+      const container = document.getElementById('particles');
+      for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        const size = Math.random() * 80 + 20;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        particle.style.opacity = Math.random() * 0.2 + 0.05;
+        particle.style.animationDelay = `${Math.random() * 5}s`;
+        container.appendChild(particle);
+      }
+    }
+
+    // Show Notification
+    function showNotification(title, message, type = 'success') {
+      const notification = document.getElementById('notification');
+      const titleEl = document.getElementById('notification-title');
+      const messageEl = document.getElementById('notification-message');
+
+      titleEl.textContent = title;
+      messageEl.textContent = message;
+
+      const icon = notification.querySelector('div div');
+      if (type === 'success') {
+        icon.className = 'w-8 h-8 rounded-full bg-green-500 flex items-center justify-center';
+        icon.innerHTML = '<i class="fas fa-check text-white"></i>';
+      } else if (type === 'error') {
+        icon.className = 'w-8 h-8 rounded-full bg-red-500 flex items-center justify-center';
+        icon.innerHTML = '<i class="fas fa-exclamation text-white"></i>';
+      } else if (type === 'info') {
+        icon.className = 'w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center';
+        icon.innerHTML = '<i class="fas fa-info text-white"></i>';
+      }
+
+      notification.classList.add('show');
+
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 5000);
+    }
+
+    // Send Email using EmailJS
+    async function sendEmail(formData) {
+      try {
+        const response = await emailjs.send(
+          'service_zikwpgr', // Your EmailJS Service ID
+          'template_4jz3mm8', // Your EmailJS Template ID
+          {
+            from_name: formData.name,
+            from_email: formData.email,
+            subject: formData.subject,
+            message: formData.message,
+            to_email: 'maahfuz2021@gmail.com',
+            reply_to: formData.email
+          }
+        );
+
+        return response;
+      } catch (error) {
+        console.error('EmailJS Error:', error);
+        throw error;
+      }
+    }
+
+    // Projects Data with Firebase projects
+    const projects = [
+      {
+        title: "Online Exam System",
+        description: "Full-stack online examination platform with real-time monitoring",
+        category: "mern",
+        tech: ["React", "Node.js", "MongoDB", "Express", "Tailwind"],
+        github: "https://github.com/Mahfuz21-04050/Online-Exam-website-frontend-and-backend",
+        demo: "#",
+        featured: true
+      },
+      {
+        title: "Event Management System",
+        description: "Complete event management platform with booking system",
+        category: "mern",
+        tech: ["React", "Express", "MongoDB", "Node.js", "JWT"],
+        github: "https://github.com/Mahfuz21-04050/Event-management",
+        demo: "#",
+        featured: true
+      },
+      {
+        title: "Smart Bike Management App",
+        description: "Mobile app for bike rental management with GPS tracking",
+        category: "flutter",
+        tech: ["Flutter", "Dart", "Firebase", "Google Maps API"],
+        github: "https://github.com/Mahfuz21-04050/smart-bike-management-app",
+        demo: "#",
+        featured: true
+      },
+      {
+        title: "Currency Converter App",
+        description: "Real-time currency conversion app with offline mode",
+        category: "flutter",
+        tech: ["Flutter", "Dart", "API Integration", "Firebase"],
+        github: "https://github.com/Mahfuz21-04050/currency-converter-app",
+        demo: "#",
+        featured: true
+      },
+      {
+        title: "My Location App",
+        description: "Location-based app with GPS tracking",
+        category: "flutter",
+        tech: ["Flutter", "Dart", "Geolocation", "Google Maps", "Firebase"],
+        github: "https://github.com/Mahfuz21-04050/My-Location-",
+        demo: "#",
+        featured: true
+      },
+      {
+        title: "Smart Laundry System",
+        description: "Web application for laundry service management",
+        category: "frontend",
+        tech: ["HTML", "CSS", "JavaScript", "Bootstrap"],
+        github: "https://github.com/Mahfuz21-04050/update-laundry",
+        demo: "https://mahfuz21-04050.github.io/update-laundry/",
+        featured: true
+      },
+      {
+        title: "Firebase Auth System",
+        description: "Authentication system with Firebase",
+        category: "firebase",
+        tech: ["Firebase", "JavaScript", "HTML", "CSS"],
+        github: "#",
+        demo: "#",
+        featured: true
+      },
+      {
+        title: "Advanced PMMS",
+        description: "Personal Money Management System with analytics",
+        category: "mern",
+        tech: ["JavaScript", "Node.js", "MongoDB", "Chart.js"],
+        github: "https://github.com/blackcodd/APMMS",
+        demo: "#",
+        featured: true
+      },
+      {
+        title: "Temperature Converter",
+        description: "Interactive temperature conversion tool",
+        category: "frontend",
+        tech: ["HTML", "CSS", "JavaScript"],
+        github: "https://github.com/Mahfuz21-04050/Temperature-Converter",
+        demo: "https://gilded-choux-fb3f6c.netlify.app",
+        featured: false
+      },
+      {
+        title: "Tailwind CSS Practice",
+        description: "Collection of UI components built with Tailwind CSS",
+        category: "frontend",
+        tech: ["Tailwind CSS", "HTML", "JavaScript"],
+        github: "https://github.com/Mahfuz21-04050/Tailwind-css",
+        demo: "https://mahfuz21-04050.github.io/Tailwind-css/",
+        featured: false
+      },
+      {
+        title: "Educational Form",
+        description: "Responsive educational application form",
+        category: "frontend",
+        tech: ["HTML", "CSS", "Form Validation"],
+        github: "https://github.com/Mahfuz21-04050/Educational-form",
+        demo: "https://mahfuz21-04050.github.io/Educational-form/",
+        featured: false
+      },
+      {
+        title: "Modern Newspaper",
+        description: "Responsive newspaper layout design",
+        category: "frontend",
+        tech: ["HTML", "CSS", "Grid Layout"],
+        github: "https://github.com/Mahfuz21-04050/Newspaper",
+        demo: "https://mahfuz21-04050.github.io/Newspaper/",
+        featured: false
+      },
+      {
+        title: "React Project 1",
+        description: "First React.js project with modern UI components",
+        category: "frontend",
+        tech: ["React", "CSS", "JavaScript"],
+        github: "https://github.com/Mahfuz21-04050/react-project-1-",
+        demo: "#",
+        featured: false
+      },
+      {
+        title: "Weather App",
+        description: "Weather forecasting application",
+        category: "frontend",
+        tech: ["JavaScript", "API", "CSS"],
+        github: "https://github.com/Mahfuz21-04050/Weather-App",
+        demo: "#",
+        featured: false
+      }
+    ];
+
+    // Render Projects
+    function renderProjects(filter = 'all') {
+      const container = document.getElementById('projectsContainer');
+      container.innerHTML = '';
+
+      const filteredProjects = filter === 'all'
+        ? projects
+        : projects.filter(p => p.category === filter);
+
+      document.getElementById('projectCount').textContent = `${filteredProjects.length}+`;
+
+      filteredProjects.forEach((project, index) => {
+        const projectCard = `
+          <div class="glass-card overflow-hidden hover:transform hover:-translate-y-2 transition-all duration-300" 
+               data-aos="fade-up" data-aos-delay="${index * 100}">
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <span class="px-3 py-1 rounded-full text-sm ${project.category === 'mern' ? 'bg-primary-500/20 text-primary-400' :
+            project.category === 'flutter' ? 'bg-accent-500/20 text-accent-400' :
+              project.category === 'firebase' ? 'bg-yellow-500/20 text-yellow-400' :
+                'bg-secondary-500/20 text-secondary-400'
+          }">
+                  ${project.category.toUpperCase()}
+                </span>
+                ${project.featured ?
+            '<span class="px-2 py-1 bg-yellow-500/20 text-yellow-400 rounded text-xs">★ Featured</span>' :
+            ''}
+              </div>
+              
+              <h3 class="text-xl font-bold mb-3 hover:text-primary-400 transition cursor-pointer">
+                ${project.title}
+              </h3>
+              <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm">${project.description}</p>
+              
+              <div class="flex flex-wrap gap-2 mb-6">
+                ${project.tech.map(tech => `
+                  <span class="px-3 py-1 tech-tag rounded-full text-xs">${tech}</span>
+                `).join('')}
+              </div>
+              
+              <div class="flex gap-3">
+                ${project.github !== '#' ? `
+                  <a href="${project.github}" target="_blank" 
+                     class="flex-1 py-2 bg-gray-800 dark:bg-gray-700 text-center rounded-lg hover:bg-gray-900 dark:hover:bg-gray-800 transition flex items-center justify-center">
+                    <i class="fab fa-github mr-2"></i> Code
+                  </a>
+                ` : ''}
+                ${project.demo !== '#' ? `
+                  <a href="${project.demo}" target="_blank" 
+                     class="flex-1 py-2 bg-gradient-to-r from-primary-500 to-secondary-500 text-center rounded-lg hover:opacity-90 transition flex items-center justify-center">
+                    <i class="fas fa-external-link-alt mr-2"></i> Demo
+                  </a>
+                ` : ''}
+              </div>
+            </div>
+          </div>
+        `;
+        container.innerHTML += projectCard;
+      });
+    }
+
+    // Filter Projects
+    function filterProjects(category) {
+      const buttons = document.querySelectorAll('#projects ~ div button');
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-gradient-to-r', 'from-primary-500', 'to-secondary-500', 'text-white');
+        btn.classList.add('glass-card', 'hover:bg-gray-800/50', 'dark:hover:bg-gray-800/50');
+      });
+
+      event.target.classList.remove('glass-card', 'hover:bg-gray-800/50', 'dark:hover:bg-gray-800/50');
+      event.target.classList.add('bg-gradient-to-r', 'from-primary-500', 'to-secondary-500', 'text-white');
+
+      renderProjects(category);
+    }
+
+    // Contact Form Submission with EmailJS
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = {
+        name: e.target.user_name.value,
+        email: e.target.user_email.value,
+        subject: e.target.subject.value,
+        message: e.target.message.value
+      };
+
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+      submitBtn.disabled = true;
+
+      try {
+        // Send email using EmailJS
+        const response = await sendEmail(formData);
+
+        if (response.status === 200) {
+          showNotification('Success!', 'Your message has been sent successfully to maahfuz2021@gmail.com', 'success');
+          e.target.reset();
+        } else {
+          throw new Error('Email sending failed');
+        }
+
+      } catch (error) {
+        console.error('Email sending error:', error);
+
+        // Fallback to mailto link
+        const mailtoLink = `mailto:maahfuz2021@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`;
+        window.open(mailtoLink, '_blank');
+
+        showNotification('Message Sent!', 'Email client opened as fallback', 'info');
+        e.target.reset();
+      } finally {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }
+    });
+
+    // Back to Top Button
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTop.classList.remove('opacity-0', 'invisible');
+        backToTop.classList.add('opacity-100', 'visible');
+      } else {
+        backToTop.classList.remove('opacity-100', 'visible');
+        backToTop.classList.add('opacity-0', 'invisible');
+      }
+    });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Smooth Scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+          if (window.innerWidth < 768) {
+            toggleMobileMenu();
+          }
+        }
+      });
+    });
+
+    // Auto-refresh location every 30 minutes
+    setInterval(() => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      }
+    }, 30 * 60 * 1000);
+
+    // Initialize everything
+    window.addEventListener('DOMContentLoaded', () => {
+      calculateAge();
+      getLocation();
+      updateTime();
+      createParticles();
+      renderProjects();
+
+      setTimeout(() => {
+        showNotification('Welcome!', 'Feel free to explore my projects and journey!', 'success');
+      }, 2000);
+
+      setInterval(getLocation, 60000);
+    });
+  </script>
+</body>
+
+</html>
