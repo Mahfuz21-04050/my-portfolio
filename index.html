@@ -433,10 +433,11 @@
               class="px-6 py-3 border border-primary-500 text-primary-500 rounded-lg hover:bg-primary-500/10 transition-all">
               <i class="fas fa-user mr-2"></i> About Me
             </a>
-            <a href="cv.html" target="_blank"
-              class="px-6 py-3 bg-gray-800 dark:bg-gray-700 rounded-lg hover:bg-gray-900 dark:hover:bg-gray-800 transition-all">
-              <i class="fas fa-download mr-2"></i> See CV
+            <a href="PIC/cv.pdf" download class="px-6 py-3 bg-gray-800 dark:bg-gray-700 text-white font-semibold rounded-lg 
+                      hover:bg-gray-900 dark:hover:bg-gray-800 transition-colors flex items-center">
+              <i class="fas fa-download mr-2"></i> Download CV
             </a>
+
           </div>
         </div>
 
@@ -507,7 +508,7 @@
             <div class="space-y-3 mt-6">
               <div class="flex items-center text-gray-600 dark:text-gray-400">
                 <i class="fas fa-university text-primary-400 mr-3"></i>
-                <span>CUET - CSE Department (2021-2025)</span>
+                <span>CUET - CSE Department (2021-Present)</span>
               </div>
               <div class="flex items-center text-gray-600 dark:text-gray-400">
                 <i class="fas fa-map-marker-alt text-secondary-400 mr-3"></i>
@@ -596,6 +597,23 @@
             </div>
             <h4 class="font-bold mb-2">Mobile Apps</h4>
             <p class="text-gray-600 dark:text-gray-400 text-sm">Building cross-platform mobile applications with Flutter
+            </p>
+          </div>
+          <div class="text-center p-6">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-accent-500/20 flex items-center justify-center">
+              <i class="fas fa-brain text-accent-400 text-2xl"></i>
+            </div>
+            <h4 class="font-bold mb-2">Machine Learning</h4>
+            <p class="text-gray-600 dark:text-gray-400 text-sm">
+              Building intelligent systems using data-driven models and AI algorithms
+            </p>
+          </div>
+          <div class="text-center p-6">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-primary-500/20 flex items-center justify-center">
+              <i class="fas fa-cloud text-primary-400 text-2xl"></i>
+            </div>
+            <h4 class="font-bold mb-2">Cloud Computing</h4>
+            <p class="text-gray-600 dark:text-gray-400 text-sm">Leveraging cloud platforms for scalable applications
             </p>
           </div>
         </div>
@@ -825,9 +843,9 @@
           class="px-6 py-2 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 text-white font-semibold transition-all hover:scale-105">
           All Projects
         </button>
-        <button onclick="filterProjects('mern')"
+        <button onclick="filterProjects('fullstack')"
           class="px-6 py-2 glass-card hover:bg-gray-800/50 dark:hover:bg-gray-800/50 transition-all">
-          MERN Stack
+          Full Stack
         </button>
         <button onclick="filterProjects('flutter')"
           class="px-6 py-2 glass-card hover:bg-gray-800/50 dark:hover:bg-gray-800/50 transition-all">
@@ -837,10 +855,7 @@
           class="px-6 py-2 glass-card hover:bg-gray-800/50 dark:hover:bg-gray-800/50 transition-all">
           Frontend
         </button>
-        <button onclick="filterProjects('firebase')"
-          class="px-6 py-2 glass-card hover:bg-gray-800/50 dark:hover:bg-gray-800/50 transition-all">
-          Firebase
-        </button>
+
       </div>
 
       <!-- Projects Grid -->
@@ -1345,8 +1360,8 @@
       {
         title: "Online Exam System",
         description: "Full-stack online examination platform with real-time monitoring",
-        category: "mern",
-        tech: ["React", "Node.js", "MongoDB", "Express", "Tailwind"],
+        category: "fullstack",
+        tech: ["HTML", "CSS", "JavaScript", "Bootstrap", "Tailwind", "MongoDB", "Express.js", "bcrypt", "Katex", "PDF Generation"],
         github: "https://github.com/Mahfuz21-04050/Online-Exam-website-frontend-and-backend",
         demo: "#",
         featured: true
@@ -1354,7 +1369,7 @@
       {
         title: "Event Management System",
         description: "Complete event management platform with booking system",
-        category: "mern",
+        category: "fullstack",
         tech: ["React", "Express", "MongoDB", "Node.js", "JWT"],
         github: "https://github.com/Mahfuz21-04050/Event-management",
         demo: "#",
@@ -1389,27 +1404,19 @@
       },
       {
         title: "Smart Laundry System",
-        description: "Web application for laundry service management",
-        category: "frontend",
-        tech: ["HTML", "CSS", "JavaScript", "Bootstrap"],
+        description: "Laundry service management website with user dashboard",
+        category: "fullstack",
+        tech: ["HTML", "CSS", "JavaScript", "Bootstrap", "Tailwind", "Firebase", "Firestore", "Authentication", "Cloud Functions", "Hosting", "Storage", "Firestore Rules", "PDF Generation"],
         github: "https://github.com/Mahfuz21-04050/update-laundry",
         demo: "https://mahfuz21-04050.github.io/update-laundry/",
         featured: true
       },
+
       {
-        title: "Firebase Auth System",
-        description: "Authentication system with Firebase",
-        category: "firebase",
-        tech: ["Firebase", "JavaScript", "HTML", "CSS"],
-        github: "#",
-        demo: "#",
-        featured: true
-      },
-      {
-        title: "Advanced PMMS",
+        title: "Advanced Personal Money Management System",
         description: "Personal Money Management System with analytics",
-        category: "mern",
-        tech: ["JavaScript", "Node.js", "MongoDB", "Chart.js"],
+        category: "fullstack",
+        tech: ["HTML", "CSS", "JavaScript", "Bootstrap", "Tailwind", "SQL", "Java", "Spring Boot", "PDF Generation"],
         github: "https://github.com/blackcodd/APMMS",
         demo: "#",
         featured: true
@@ -1445,7 +1452,7 @@
         title: "Modern Newspaper",
         description: "Responsive newspaper layout design",
         category: "frontend",
-        tech: ["HTML", "CSS", "Grid Layout"],
+        tech: ["HTML", "Bootstrap", "Grid Layout"],
         github: "https://github.com/Mahfuz21-04050/Newspaper",
         demo: "https://mahfuz21-04050.github.io/Newspaper/",
         featured: false
@@ -1463,10 +1470,46 @@
         title: "Weather App",
         description: "Weather forecasting application",
         category: "frontend",
-        tech: ["JavaScript", "API", "CSS"],
+        tech: ["HTML", "JavaScript", "API", "CSS"],
         github: "https://github.com/Mahfuz21-04050/Weather-App",
-        demo: "#",
-        featured: false
+        demo: "https://mahfuz21-04050.github.io/Weather-App/",
+        featured: true
+      },
+      {
+        title: "Language Translator Website",
+        description: "Web application for translating text between multiple languages with voice output feature.",
+        category: "frontend",
+        tech: ["HTML", "CSS", "JavaScript", "Google Translate API Integration"],
+        github: "https://github.com/Mahfuz21-04050/Language-Converter",
+        demo: "https://mahfuz21-04050.github.io/Language-Converter/",
+        featured: true
+      },
+      {
+        title: "Cricket Score Keeper",
+        description: "A web application to keep track of cricket scores in real-time.",
+        category: "fullstack",
+        tech: ["HTML", "CSS", "JavaScript", "Bootstrap", "Firebase", "Firestore", "Authentication", "Hosting", "Firestore Rules"],
+        github: "https://github.com/Mahfuz21-04050/Cricket-Report",
+        demo: "https://mahfuz21-04050.github.io/Cricket-Report/",
+        featured: true
+      },
+      {
+        title: "Doctor Appointment Website",
+        description: "A web application for booking doctor appointments with real-time availability.",
+        category: "fullstack",
+        tech: ["HTML", "CSS", "JavaScript", "Bootstrap", "Firebase", "Firestore", "Authentication", "Hosting", "Firestore Rules"],
+        github: "https://github.com/Mahfuz21-04050/doctor-site",
+        demo: "https://mahfuz21-04050.github.io/doctor-site/",
+        featured: true
+      },
+      {
+        title: "Result Sheet Generator",
+        description: "A web application to generate student result sheets based on input marks.",
+        category: "fullstack",
+        tech: ["HTML", "CSS", "JavaScript", "Bootstrap", "Firebase", "Firestore", "Authentication", "Hosting", "Firestore Rules"],
+        github: "https://github.com/Mahfuz21-04050/Result",
+        demo: "https://mahfuz21-04050.github.io/Result/",
+        featured: true
       }
     ];
 
@@ -1495,7 +1538,7 @@
                data-aos="fade-up" data-aos-delay="${index * 100}">
             <div class="p-6">
               <div class="flex justify-between items-start mb-4">
-                <span class="px-3 py-1 rounded-full text-sm ${project.category === 'mern' ? 'bg-primary-500/20 text-primary-400' :
+                <span class="px-3 py-1 rounded-full text-sm ${project.category === 'fullstack' ? 'bg-primary-500/20 text-primary-400' :
             project.category === 'flutter' ? 'bg-accent-500/20 text-accent-400' :
               project.category === 'firebase' ? 'bg-yellow-500/20 text-yellow-400' :
                 'bg-secondary-500/20 text-secondary-400'
